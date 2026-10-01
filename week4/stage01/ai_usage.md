@@ -1,109 +1,70 @@
-# Part C — AI as Tutor  
-**AI ON (Use only UC‑approved GenAI tools such as Microsoft Copilot)**
+# Stage 1 AI Usage
 
-## Prompt Used
-```
+## Part C - AI as Tutor
+
+### Prompt
+
 Act as a Python tutor.
+
 I am learning introductory software technology.
-Here is a small appointment‑booking function.
+
+Here is a small appointment-booking function.
+
 1. Explain what the code does.
 2. Identify three limitations.
 3. Suggest improvements.
 4. Do not rewrite the whole application.
 5. Ask me two questions to test my understanding.
-```
 
----
+### AI Contribution
 
-## Example Code
-```python
-def book_appointment(name, time):
-    print("Appointment booked for", name, "at", time)
-```
+The AI helped explain how the appointment-booking function works.
 
----
+It identified limitations including:
+- The practitioner name was not validated.
+- The appointment time was not validated.
+- The program did not check for conflicting appointments.
 
-## 1. Explanation of What the Code Does
-The function `book_appointment()` takes two inputs — a **name** and an **appointment time** — and prints a confirmation message. It does not store the appointment or check whether the inputs are valid; it simply displays text to the user.
+It suggested adding input validation and checking for appointment conflicts.
 
----
+### Decision
 
-## 2. Three Limitations
-1. **No data storage**  
-   The appointment is not saved anywhere, so it cannot be retrieved later.
-
-2. **No error handling**  
-   Invalid or empty inputs still produce output without warnings.
-
-3. **No conflict checking**  
-   The function cannot detect overlapping or duplicate appointment times.
-
----
-
-## 3. Suggested Improvements  
-*(Without rewriting the whole application)*
-
-- Add a **list or dictionary** to store multiple appointments.  
-- Validate inputs (e.g., ensure time follows a proper format).  
-- Add simple **conflict detection** to prevent double‑booking.
-
----
-
-## 4. No Full Rewrite  
-These improvements can be added gradually while keeping the original structure intact.
-
----
-
-## 5. Questions to Test Understanding
-1. Why is storing appointments in a list or dictionary more useful than printing them?  
-2. What problems might occur if two users book the same time without conflict checking?
+I used the AI suggestions to help identify limitations, but I did not
+automatically add all of the suggested changes. The suggestions still
+needed to be compared with the requirements and tested.
 
 
-# Part D — Generate an Alternative  
-**AI ON (Use only UC‑approved GenAI tools such as Microsoft Copilot)**
+## Part D - AI-Generated Alternative
 
-## Prompt Used
-```
-Create a simple beginner‑friendly Python function that stores 
-patient name, practitioner name, and appointment time.
-Do not use a database.
-Do not use a GUI.
-```
+### Prompt
 
----
+Create a simple beginner-friendly Python function that stores a patient
+name, practitioner name and appointment time.
 
-## AI‑Generated Beginner‑Friendly Python Function
+Do not use a database or GUI.
+Keep the code simple and suitable for an introductory Python student.
 
-```python
-# A simple function to store appointment details in a dictionary.
-# No database and no GUI are used.
+### AI Contribution
 
-def create_appointment(patient_name, practitioner_name, appointment_time):
-    appointment = {
-        "patient": patient_name,
-        "practitioner": practitioner_name,
-        "time": appointment_time
-    }
-    return appointment
+The AI generated an alternative `add_appointment()` function that:
+- Accepted the patient name, practitioner name and appointment time.
+- Stored the information in a dictionary.
+- Added the appointment to a list.
+- Returned the newly created appointment.
 
-# Example usage:
-appt = create_appointment("Alice", "Dr Smith", "10:30 AM")
-print(appt)
-```
+### Evaluation
 
----
+The generated function was simple and only used the required appointment
+information. It did not add a database or GUI.
 
-## Explanation  
-This function creates a **Python dictionary** containing three pieces of information:
+However, it did not include input validation or appointment conflict
+checking. It also returned the appointment even though this was not
+specifically required.
 
-- **patient** — the patient’s name  
-- **practitioner** — the practitioner’s name  
-- **time** — the appointment time  
+### Verification
 
-The dictionary is returned so it can be stored in a list, printed, or used later in the program.  
-This keeps the solution simple and beginner‑friendly while following the rules:  
-✔ No database  
-✔ No GUI  
-✔ Only basic Python structures  
+I reviewed the generated code and compared it with the human-written
+version and the SmartCare requirements.
 
----
+I also tested the program using normal and unusual inputs rather than
+assuming that the AI-generated output was correct.
