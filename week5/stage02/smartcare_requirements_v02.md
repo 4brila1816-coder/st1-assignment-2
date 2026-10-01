@@ -1,194 +1,182 @@
-# SmartCare Requirements Specification
+# SmartCare v0.2 - Requirements Specification
 
-## Part A - Client Brief
+## 1. Problem and Scope
 
-## Part A - Client Brief
+SmartCare currently uses spreadsheets and paper records to manage clinic
+information. Staff have reported duplicate bookings, difficulty finding
+patient information, inconsistent appointment status and limited appointment
+history.
 
-SmartCare is a small community clinic that currently manages patient
-information and appointments using spreadsheets, paper records and
-manual processes.
+Management wants a small, maintainable system for managing patients,
+practitioners and appointments.
 
-The current system has several operational problems, including duplicate
-appointment bookings, difficulty locating patient records, inconsistent
-appointment status information, limited visibility of practitioner
-availability, manual cancellation processes, unreliable appointment
-history and difficulty producing basic operational reports.
-
-Management wants a simple software system that initially supports patient,
-practitioner and appointment management. The first version should be
-manageable and suitable for a small clinic rather than a complex hospital
-information system.
-
-## Part B - Stakeholders and Scope
-
-### Stakeholders
-1. Clinic Management
-   - Responsible for overseeing the clinic and deciding what the system needs to support.
-   - Interested in having a simple and maintainable system and improving clinic operations.
-
-2. Clinic Staff / Reception Staff
-   - Use the current spreadsheet, paper and manual processes.
-   - Would likely use the system to manage patient information and appointments.
-
-3. Healthcare Practitioners / GPs
-   - Provide consultations at SmartCare.
-   - Need appointment information and visibility of their availability.
-
-4. Patients
-   - Attend appointments at SmartCare.
-   - Their personal information and appointment records are managed by the clinic.
 ### In Scope
-- Patient management
-- Practitioner management
-- Appointment management
-- Viewing practitioner availability
-- Appointment cancellation
-- Maintaining appointment history
-- Producing basic operational reports
+
+- Patient information management.
+- Practitioner information management.
+- Appointment information management.
+- Addressing duplicate bookings.
+- Addressing difficulty finding patient information.
+- Managing appointment status consistently.
+- Maintaining appointment history.
+- Keeping the system small and maintainable.
+
 ### Out of Scope
-- A complex hospital information system
-- Large-scale hospital functionality beyond the needs of a small community clinic
-### Provisional / Unconfirmed Features
-- Online patient booking
-- SMS or email appointment reminders
-- Medicare integration
-- Online payments
-- Electronic prescriptions
-- Patient self-service accounts
-## Part C - Functional Requirements
-FR-01: The system shall allow staff to create and maintain patient information.
 
-FR-02: The system shall allow staff to create and maintain practitioner information.
+Based on the current requirements evidence, the following are outside the
+defined scope:
 
-FR-03: The system shall allow staff to create appointments for patients with practitioners.
+- Facial recognition login.
+- Online payments.
+- AI treatment recommendations.
 
-FR-04: The system shall prevent duplicate appointment bookings.
+### Provisional / Requires Validation
 
-FR-05: The system shall allow staff to locate and view patient information.
+The following have not been confirmed by the client and require further
+clarification:
 
-FR-06: The system shall record and display the current status of an appointment.
+- How patient information should be searched or located.
+- What conditions make an appointment a duplicate booking.
+- Which appointment status values are required.
+- Which records should be retained in appointment history.
+- Specific user roles and permissions.
 
-FR-07: The system shall allow staff to view practitioner availability.
+## 2. Stakeholders
 
-FR-08: The system shall allow appointments to be cancelled.
+| Stakeholder | Need | Evidence |
+|---|---|---|
+| Clinic staff | A more consistent way to manage patient and appointment information. | Staff report duplicate bookings, difficulty finding patient information, inconsistent appointment status and limited appointment history. |
+| Clinic management | A small, maintainable system for managing patients, practitioners and appointments. | Directly stated in the client brief. |
+| Patients | Their patient and appointment information to be managed by the clinic system. | Patients are part of the system domain, but their specific needs are not directly stated in the client brief. This is provisional. |
+| Practitioners | Their practitioner and appointment information to be managed by the clinic system. | Practitioners are part of the system domain, but their specific needs are not directly stated in the client brief. This is provisional. |
 
-FR-09: The system shall maintain a history of appointments.
+## 3. Functional Requirements
 
-FR-10: The system shall allow basic operational reports to be produced.
+FR-01: The system shall allow patient information to be recorded.
 
-## Part D - Non-Functional Requirements
-NFR-01 - Reliability:
-The system shall operate reliably when managing patient, practitioner and appointment information.
+FR-02: The system shall allow stored patient information to be viewed.
 
-NFR-02 - Maintainability:
-The system shall be designed so that it can be maintained and updated without unnecessary complexity.
+FR-03: The system shall allow practitioner information to be recorded.
 
-NFR-03 - Usability:
-The system shall provide a simple and understandable way for clinic staff to manage patients, practitioners and appointments.
+FR-04: The system shall allow stored practitioner information to be viewed.
 
-NFR-04 - Data Integrity:
-The system shall maintain consistent patient, practitioner and appointment information.
+FR-05: The system shall allow appointment information to be recorded.
 
-NFR-05 - Testability:
-The system shall be designed so that its main functions can be tested to verify that they meet the specified requirements.
+FR-06: The system shall allow stored appointment information to be viewed.
 
-## Part E - User Stories and Acceptance Criteria
-### US-01 - Create an Appointment
+FR-07: The system shall detect duplicate appointment bookings.
 
-As a clinic staff member,
-I want to create an appointment for a patient with a practitioner,
-so that the patient's consultation can be scheduled.
+FR-08: The system shall record the status of an appointment.
 
-Acceptance Criteria:
+FR-09: The system shall allow appointment status to be viewed.
 
-Given a patient and practitioner are available,
-When the staff member creates an appointment,
-Then the appointment should be recorded in the system.
+FR-10: The system shall retain appointment information so that appointment
+history can be viewed.
 
-Failure Scenario:
+## 4. Non-Functional Requirements
 
-Given the practitioner already has an appointment at the selected time,
-When the staff member attempts to create another appointment,
-Then the system should prevent the duplicate booking.
-### US-02 - Find Patient Information
+NFR-01: The system should be maintainable so that changes can be made without
+unnecessarily affecting unrelated parts of the system.
 
-As a clinic staff member,
-I want to locate patient information,
-so that I can access the patient's information when needed.
+NFR-02: The system should reliably preserve patient, practitioner and
+appointment information.
 
-Acceptance Criteria:
+NFR-03: The system should maintain the integrity of stored patient,
+practitioner and appointment data.
 
-Given patient information exists in the system,
-When the staff member searches for the patient,
-Then the system should display the patient's information.
-### US-03 - View Practitioner Availability
+NFR-04: Core business logic should be independently testable.
 
-As a clinic staff member,
-I want to view practitioner availability,
-so that I can determine when a practitioner is available for an appointment.
+NFR-05: The system should provide clear and understandable interactions for
+its intended users.
 
-Acceptance Criteria:
+## 5. User Stories
 
-Given practitioner information exists in the system,
-When the staff member views the practitioner's availability,
-Then the system should display their available appointment information.
-### US-04 - Cancel an Appointment
+US-01: As a clinic staff member, I want to view stored patient information,
+so that I can find the patient information I need.
 
-As a clinic staff member,
-I want to cancel an appointment,
-so that the appointment status can be updated when the appointment is no longer required.
-### US-05 - View Appointment History
+US-02: As a clinic staff member, I want to record appointment information,
+so that appointments can be managed by the system.
 
-As a clinic staff member,
-I want to view appointment history,
-so that I can access previous appointment information when required.
-## Part H - Finalise SmartCare v0.2
+US-03: As a clinic staff member, I want duplicate appointment bookings to be
+detected, so that duplicate bookings can be identified.
 
-### Assumptions and Open Questions
-1. What specific information needs to be stored for each patient?
+US-04: As a clinic staff member, I want appointment status to be recorded,
+so that appointment status can be managed consistently.
 
-2. What specific information needs to be stored for each practitioner?
+US-05: As a clinic staff member, I want to view appointment history,
+so that previous appointment information can be found.
 
-3. What information needs to be recorded for each appointment?
+## 6. Acceptance Criteria
 
-4. What actions are included in patient and practitioner management?
+### AC-01 - View Patient Information
 
-5. What exactly should the system consider a duplicate appointment?
+GIVEN a patient has been recorded in the system,
 
-6. What appointment statuses are required?
+WHEN the staff member views the patient information,
 
-7. How should practitioner availability be recorded and displayed?
+THEN the system displays the stored patient information.
 
-8. What should happen to an appointment after it is cancelled?
 
-9. What basic operational reports does management require?
+### AC-02 - Record Appointment Information
 
-10. What should happen when staff search for a patient who does not exist?
+GIVEN the required appointment information is available,
 
-11. Are measurable reliability and usability targets required?
+WHEN the staff member records the appointment,
 
-### Selected AI Review Evidence
+THEN the system stores the appointment information.
 
-The AI review identified several areas where the initial requirements were
-ambiguous or difficult to test.
 
-One issue identified was FR-04, which states that the system should prevent
-duplicate appointment bookings. The case study confirms that duplicate
-bookings are a problem, but it does not define exactly what counts as a
-duplicate. This suggestion was accepted as a clarification question rather
-than allowing AI to define the rule.
+### AC-03 - Duplicate Booking - Failure Scenario
 
-The AI also identified ambiguity in FR-06 because the required appointment
-statuses have not been defined. This was accepted because inconsistent
-appointment status information is identified as a problem in the client
-brief, but the required statuses still need confirmation from the client.
+GIVEN the appointment would duplicate an existing booking,
 
-The suggestion concerning cancelled appointments was modified. The client
-brief confirms that manual cancellation is a problem, but the AI suggested
-considering whether cancelled appointments remain in appointment history.
-This behaviour is not confirmed by the client and therefore remains an open
-question.
+WHEN the staff member attempts to record the appointment,
 
-Suggestions to introduce measurable reliability and usability targets were
-kept unverified because the client has not supplied measurable targets.
-Values should not be invented without further client evidence.
+THEN the system detects the duplicate booking.
+
+## 7. Assumptions and Open Questions
+
+### Assumptions
+
+- Clinic staff will interact with the system to manage clinic information.
+- Patients and practitioners are part of the information managed by the system.
+- The exact details of some system functions will require further clarification
+  from the client.
+
+### Open Questions
+
+1. How should staff locate or search for patient information?
+
+2. What conditions make an appointment a duplicate booking?
+
+3. What appointment status values should the system support?
+
+4. Which appointment records should be retained in appointment history?
+
+5. Which user roles are allowed to record or manage appointments?
+
+6. What information needs to be stored for each patient?
+
+7. What information needs to be stored for each practitioner?
+
+8. What information needs to be stored for each appointment?
+
+9. How should system maintainability be measured?
+
+10. Are specific reliability requirements or targets required?
+
+11. How should system usability be measured?
+
+## 8. AI Requirements Review Record
+
+| AI Suggestion | Evidence? | Decision | Reason | Verification |
+|---|---|---|---|---|
+| Clarify how patient information should be located. | Partial | Unverified | The client confirms difficulty finding patient information but does not specify a search method. | Requires client clarification. |
+| Define what makes an appointment a duplicate booking. | Partial | Unverified | Duplicate bookings are a confirmed problem, but the conditions that define a duplicate are not provided. | Requires client clarification. |
+| Define the required appointment status values. | Partial | Unverified | Inconsistent appointment status is a confirmed problem, but specific status values are not provided. | Requires client clarification. |
+| Clarify which appointment records should remain in appointment history. | Partial | Unverified | Limited appointment history is a confirmed problem, but the required contents of the history are not specified. | Requires client clarification. |
+| Make the maintainability requirement more measurable. | Yes | Accepted | Management specifically requests a maintainable system, but no measurement criteria are provided. | Maintainability is supported by the client brief; measurement criteria still require clarification. |
+| Define measurable reliability criteria. | No specific target | Unverified | Reliability is an appropriate non-functional quality, but the client has not provided a reliability target. | Requires client clarification. |
+| Define measurable usability criteria. | No specific target | Unverified | Usability is an appropriate non-functional quality, but the client has not provided measurable criteria. | Requires client clarification. |
+| Confirm which user role records appointments. | Partial | Unverified | The brief refers to staff but does not define specific roles or permissions. | Requires client clarification. |
+
